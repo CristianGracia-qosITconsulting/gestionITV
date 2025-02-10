@@ -3,16 +3,15 @@ package modelo;
 import excepciones.*;
 
 public class Vehiculo {
-
     private String nombre, apellidos, dni, matricula, identificador;
     
-    public Vehiculo(String nombre, String apellidos, String dni, String matricula, String identificador)
-    throws DniException, MatriculaException {
+    public Vehiculo(String nombre, String apellidos, String dni, String matricula)
+    throws DniException, MatriculaException, CampoVacioException {
         this.setNombre(nombre);
         this.setApellidos(apellidos);
         this.setDni(dni);
         this.setMatricula(matricula);
-        this.setIdentificador(identificador);
+        this.setIdentificador("");
     }
     
     //  GETTERS & SETTERS
@@ -20,7 +19,18 @@ public class Vehiculo {
         return nombre;
     }
     
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre) throws CampoVacioException {
+        if (nombre.length() < 2) {
+            throw new CampoVacioException("El campo nombre no puede estar vacío");
+        }
+
+        for (int i = 0; i < this.nombre.length(); i++) {
+            char caracter = nombre.charAt(i);
+            if (!Character.isLetter(caracter)) 
+            throw new CampoVacioException("El campo \"nombre\" no puede contener números");
+        }
+
+
         this.nombre = nombre;
     }
     
@@ -28,7 +38,9 @@ public class Vehiculo {
         return apellidos;
     }
     
-    public void setApellidos(String apellidos) {
+    public void setApellidos(String apellidos) throws CampoVacioException{
+        
+        
         this.apellidos = apellidos;
     }
     
