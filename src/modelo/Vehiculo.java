@@ -11,7 +11,7 @@ public class Vehiculo {
         this.setApellidos(apellidos);
         this.setDni(dni);
         this.setMatricula(matricula);
-        this.setIdentificador("");
+        this.setIdentificador();
     }
     
     //  GETTERS & SETTERS
@@ -21,17 +21,15 @@ public class Vehiculo {
     
     public void setNombre(String nombre) throws CampoVacioException {
         if (nombre.length() < 2) {
-            throw new CampoVacioException("El campo nombre no puede estar vacío");
+            throw new CampoVacioException("El campo \"nombre\" no puede estar vacío");
         }
 
-        for (int i = 0; i < this.nombre.length(); i++) {
+        for (int i = 0; i < nombre.length(); i++) {
             char caracter = nombre.charAt(i);
             if (!Character.isLetter(caracter)) 
-            throw new CampoVacioException("El campo \"nombre\" no puede contener números");
+            throw new CampoVacioException("El campo \"nombre\" no puede contener números ni espacios");
         }
-
-
-        this.nombre = nombre;
+        this.nombre = nombre.toUpperCase().charAt(0) + nombre.substring(1).toLowerCase();
     }
     
     public String getApellidos() {
@@ -39,9 +37,26 @@ public class Vehiculo {
     }
     
     public void setApellidos(String apellidos) throws CampoVacioException{
-        
-        
-        this.apellidos = apellidos;
+        if (apellidos.length() < 3) {
+            throw new CampoVacioException("El campo nombre no puede estar vacío");
+        }
+
+        for (int i = 0; i < apellidos.length(); i++) {
+            char caracter = apellidos.charAt(i);
+            if (!Character.isLetter(caracter) && caracter != ' ') 
+            throw new CampoVacioException("El campo \"Apellidos\" no puede contener números");
+        }
+
+        String[] nombreYapellidos;
+        nombreYapellidos = apellidos.split(" ");
+        if (nombreYapellidos.length != 2) {
+            throw new CampoVacioException("El campo \"Apellidos\" debe contener 2 palabras");
+        }
+
+        String primerApellido = nombreYapellidos[0].toUpperCase().charAt(0) + nombreYapellidos[0].substring(1).toLowerCase();
+        String segundoApellido = nombreYapellidos[1].toUpperCase().charAt(0) + nombreYapellidos[1].substring(1).toLowerCase();
+
+        this.apellidos = primerApellido + " " + segundoApellido;
     }
     
     public String getDni() {
@@ -103,8 +118,14 @@ public class Vehiculo {
         return identificador;
     }
     
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
+    public void setIdentificador() {
+        String ide;
+        String parteNombre = nombre.substring(0, 1);
+        
+        String[] apellidos = this.apellidos.split(" ");
+        String parteApellidos = apellidos[0].substring(0, 1) + apellidos[1].substring(0, 1);
+        
+        this.identificador = parteNombre + parteApellidos + this.dni.substring(5,this.dni.length()-1);
     }
     
     // TOSTRING
