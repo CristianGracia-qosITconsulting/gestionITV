@@ -64,7 +64,6 @@ public class Vehiculo {
     }
     
     public void setMatricula(String matricula) throws MatriculaException {
-        //4n 3l
         if(matricula.length() != 7) throw new MatriculaException();
         
         String letrasDisponibles = "BCDFGHJKLMNPQRSTVWXYZ";
