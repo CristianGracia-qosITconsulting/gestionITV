@@ -9,9 +9,14 @@ public class DatosVehiculos {
     }
 
     //METODOS
-    public void atiende(){};
+    public void atiende(){
+        this.salida = Reloj.ahora();
+        this.tiempoEspera = this.salida - this.entrada;
+    };
 
     public void DatosVehiculo(Vehiculo v){
+    
+    
     }
 
     // GETTERS

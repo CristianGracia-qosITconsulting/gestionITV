@@ -1,8 +1,10 @@
 package modelo;
 
+import java.util.Calendar;
+
 public class Reloj {
 
     public static long ahora(){
-        return System.currentTimeMillis();
+        return Calendar.getInstance().getTimeInMillis();
     }
 }

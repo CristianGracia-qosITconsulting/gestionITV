@@ -53,8 +53,11 @@ public class Vehiculo {
             throw new CampoVacioException("El campo \"Apellidos\" debe contener 2 palabras");
         }
 
-        String primerApellido = nombreYapellidos[0].toUpperCase().charAt(0) + nombreYapellidos[0].substring(1).toLowerCase();
-        String segundoApellido = nombreYapellidos[1].toUpperCase().charAt(0) + nombreYapellidos[1].substring(1).toLowerCase();
+        String primerApellido = nombreYapellidos[0].toUpperCase().charAt(0) + 
+        nombreYapellidos[0].substring(1).toLowerCase();
+        
+        String segundoApellido = nombreYapellidos[1].toUpperCase().charAt(0) + 
+        nombreYapellidos[1].substring(1).toLowerCase();
 
         this.apellidos = primerApellido + " " + segundoApellido;
     }
@@ -100,7 +103,7 @@ public class Vehiculo {
         for (int i = 0; i < letras.length(); i++) {
             char caracter = letras.charAt(i);
             
-            if (Character.isLetter(caracter) && letrasDisponibles.indexOf(caracter) == -1) 
+            if (letrasDisponibles.indexOf(caracter) == -1) 
             throw new MatriculaException();
 
         }
@@ -125,7 +128,8 @@ public class Vehiculo {
         String[] apellidos = this.apellidos.split(" ");
         String parteApellidos = apellidos[0].substring(0, 1) + apellidos[1].substring(0, 1);
         
-        this.identificador = parteNombre + parteApellidos + this.dni.substring(5,this.dni.length()-1);
+        ide = parteNombre + parteApellidos + this.dni.substring(5,this.dni.length()-1);
+        this.identificador = ide;
     }
     
     // TOSTRING
