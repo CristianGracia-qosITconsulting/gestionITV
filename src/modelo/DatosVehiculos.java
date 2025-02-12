@@ -4,7 +4,9 @@ public class DatosVehiculos {
     private Vehiculo vehiculo;
     private long entrada, salida, tiempoEspera;
 
-    public DatosVehiculos() {
+    public DatosVehiculos(Vehiculo vehiculo) {
+
+        this.setVehiculo(vehiculo);
         this.entrada = Reloj.ahora();
     }
 
@@ -12,11 +14,7 @@ public class DatosVehiculos {
     public void atiende(){
         this.salida = Reloj.ahora();
         this.tiempoEspera = this.salida - this.entrada;
-    };
-
-    public void DatosVehiculo(Vehiculo v){
-    
-    
+        System.out.println("Tiempo de espera: " + this.tiempoEspera/1000 + " segundos");
     }
 
     // GETTERS
@@ -29,7 +27,12 @@ public class DatosVehiculos {
     }
 
     public long getTiempoEspera() {
-        return tiempoEspera;
+        return (salida - entrada) / 1000;
+    }
+
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     // TOSTRING
