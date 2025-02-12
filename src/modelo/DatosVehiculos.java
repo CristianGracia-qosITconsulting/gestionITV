@@ -14,7 +14,7 @@ public class DatosVehiculos {
     public void atiende(){
         this.salida = Reloj.ahora();
         this.tiempoEspera = this.salida - this.entrada;
-        System.out.println("Tiempo de espera: " + this.tiempoEspera/1000 + " segundos");
+        System.out.println("Tiempo de espera: " + this.tiempoEspera + " ms");
     }
 
     // GETTERS
