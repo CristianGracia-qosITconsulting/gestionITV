@@ -3,6 +3,7 @@ package modelo;
 public class DatosVehiculos {
     private Vehiculo vehiculo;
     private long entrada, salida, tiempoEspera;
+    private static long tiempoTotal;
 
     public DatosVehiculos(Vehiculo vehiculo) {
 
@@ -13,8 +14,9 @@ public class DatosVehiculos {
     //METODOS
     public void atiende(){
         this.salida = Reloj.ahora();
-        this.tiempoEspera = this.salida - this.entrada;
-        System.out.println("Tiempo de espera: " + this.tiempoEspera + " ms");
+        this.tiempoEspera = getTiempoEspera();
+        tiempoTotal+=this.tiempoEspera;
+        System.out.println("Tiempo de espera: " + this.tiempoEspera + "s");
     }
 
     // GETTERS
@@ -33,6 +35,10 @@ public class DatosVehiculos {
 
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
+    }
+
+    public static long getTiempoTotal() {
+        return tiempoTotal;
     }
 
     // TOSTRING
