@@ -1,6 +1,5 @@
 package vista;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import controlador.VehiculosController;
@@ -14,7 +13,7 @@ public class Main{
         ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
         Vehiculo v, v2, v3, v4;
         try {
-            v = new Vehiculo("pEpe", "garcia PERez", "12345678Z", "1234BBC");
+            v = new Vehiculo("pEpe", "garcia PERez", "12345678z", "1234BBC");
             v2 = new Vehiculo("Juan", "Moreno Gomez", "12345678Z", "4683DDV");
             v3 = new Vehiculo("Maria", "Rodriguez Salas", "12345678Z", "7435JSB");
             v4 = new Vehiculo("Antonio", "Lopez Gutierrez", "12345678Z", "9122FCK");
@@ -30,6 +29,7 @@ public class Main{
                 vc.nuevoVehiculo(vehiculo);
             }
             for (int i = 0; i < vehiculos.size(); i++) {
+                Thread.sleep(1000);
                 vc.atenderVehiculo();
             }
 
